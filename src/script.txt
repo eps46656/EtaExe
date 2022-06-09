@@ -1,0 +1,57 @@
+
+for 每個三角面
+    [xa, ya, za] 第 1 個頂點投影到畫面的 x y z
+    [xb, yb, zb] 第 2 個頂點投影到畫面的 x y z
+    [xc, yc, zc] 第 3 個頂點投影到畫面的 x y z
+
+    for [xa, ya, za]、[xb, yb, zb]、[xc, yc, zc] 範圍內的每個像素
+        [xi, yi, zi] 線性差值出來的
+
+        if zi < table[xi][yi].z
+            table[xi][yi].triangle = 當前這個三角面
+            table[xi][yi].z = zi
+        end
+    end
+end
+
+
+TaskScheduler
+    unsigned int num_of_buffering_tasks() const;
+    unsigned int num_of_processing_tasks() const;
+
+    void AppendTask(QuestArgs&& ... quest_args);
+        append a task to task buffer, fail when task executor is processing
+
+    bool Execute();
+        execute tasks in task buffer, return the complement.
+    
+    bool IsCompleted();
+        return the complment
+
+TaskDistributor
+    std::vector<TaskScheduler*>& child_task_schedulers();
+    const std::vector<TaskScheduler*>& child_task_schedulers() const;
+
+    unsigned int num_of_buffering_tasks() const;
+    unsigned int num_of_processing_tasks() const;
+
+    void AppendTask(QuestArgs&& ... quest_args);
+        append a task to task buffer, fail when task executor is processing
+
+    bool Execute();
+        execute tasks in task buffer, return the complement.
+    
+    bool IsCompleted();
+        return the complment
+
+
+Problem 4
+
+NPC.
+
+
+Prove:
+
+    We can make set cover problem to this problem 4. In set cover problem, given U and S. The reduction method is add U into S, S'. Then solve S' as 
+
+
